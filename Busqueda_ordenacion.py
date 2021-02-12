@@ -1,5 +1,6 @@
 import random
 
+2
 def order_a_list(my_list):
     print('\n\nThank you. \nNow, please select the method to order your list. 1,2 or 3?: \n 1. Bubble Sort. \n 2. Insertion Sort. \n 3. Merge Sort.')
     method_1 = input(f'\n Your method:')
@@ -11,8 +12,16 @@ def order_a_list(my_list):
         order_a_list(my_list)
     
     if method_1 == 1:
-        pass
-    elif method_1 == 2:
+        n = len(my_list)
+
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                
+                if my_list[j] > my_list[j + 1]:
+                    my_list[j], my_list[j + 1] = my_list[j + 1], my_list[j]
+        return my_list
+
+    elif method_1 == 2: 
         pass
     elif method_1 == 3:
         pass
@@ -56,16 +65,18 @@ def run():
     print(f'Your list: \n {my_list}')
 
     if election == 1:
-        srch_a_number(my_list)
+        new_list = order_a_list(my_list)
+        return new_list
     elif election == 2:
         order_a_list(my_list)
     else:
         print('Please select a valid option: 1 or 2')
         exit()
-        
+       
 
 if __name__ == "__main__":
     run()
+    
 
 
 
