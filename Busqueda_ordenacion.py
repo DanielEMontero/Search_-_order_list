@@ -56,9 +56,11 @@ def run():
     print(f'Your list: \n {my_list}')
 
     if election == 1:
-        srch_a_number(my_list)
+        new_list = srch_a_number(my_list)
+        print(new_list)
     elif election == 2:
-        order_a_list(my_list)
+        new_list = order_a_list(my_list)
+        print(new_list)
     else:
         print('Please select a valid option: 1 or 2')
         exit()
