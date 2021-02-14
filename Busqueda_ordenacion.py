@@ -20,9 +20,11 @@ def order_a_list(my_list):
                 if my_list[j] > my_list[j + 1]:
                     my_list[j], my_list[j + 1] = my_list[j + 1], my_list[j]
         return my_list
+        print(my_list)
 
     elif method_1 == 2: 
-        pass
+        n = len(my_list)
+        
     elif method_1 == 3:
         pass
     else:
