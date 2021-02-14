@@ -1,5 +1,40 @@
 import random
 
+def merge_sort(my_list):
+    if len(my_list) > 1:
+            middle = len(my_list) // 2
+            left = my_list[:middle]
+            right = my_list[middle:]
+    
+            merge_sort(left)
+            merge_sort(right)
+
+            i = 0
+            j = 0
+            k = 0
+
+            while i < len(left) and j < len(right):
+                if left[i] < right[j]:
+                    my_list[k] = left[i]
+                    i += 1
+                else:
+                    my_list[k] = right[j]
+                    j += 1
+                
+                k += 1
+
+            while i < len(left):
+                my_list[k] = left[i]
+                i += 1
+                k += 1
+            
+            while j < len(right):
+                my_list[k] = right[j]
+                j += 1
+                k += 1
+
+    return my_list
+
 
 def order_a_list(my_list):
     print('\n\nThank you. \nNow, please select the method to order your list. 1,2 or 3?: \n 1. Bubble Sort. \n 2. Insertion Sort. \n 3. Merge Sort.')
@@ -19,6 +54,7 @@ def order_a_list(my_list):
                 
                 if my_list[j] > my_list[j + 1]:
                     my_list[j], my_list[j + 1] = my_list[j + 1], my_list[j]
+        
         return my_list
 
     elif method_1 == 2: 
@@ -37,7 +73,9 @@ def order_a_list(my_list):
         return my_list
 
     elif method_1 == 3:
-        pass
+        new_list = merge_sort(my_list)
+        return new_list
+
     else:
         print('Please select a valid option: 1, 2 or 3')
         order_a_list(my_list)
