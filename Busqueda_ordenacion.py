@@ -1,5 +1,6 @@
 import random
 
+
 def order_a_list(my_list):
     print('\n\nThank you. \nNow, please select the method to order your list. 1,2 or 3?: \n 1. Bubble Sort. \n 2. Insertion Sort. \n 3. Merge Sort.')
     method_1 = input(f'\n Your method:')
@@ -22,7 +23,7 @@ def order_a_list(my_list):
 
 
 def srch_a_number(my_list):
-    print('\n\nThank you. \nNow, please select the method to search a number in the list. 1 or 2?: \n 1.Line Search. \n 2.Binary Search.')
+    print('\n\nThank you. \nNow, please select the method to search a number in the list. 1 or 2?: \n 1.Linear Search. \n 2.Binary Search.')
     method_2 = input(f'\n Your method:')
 
     try:
@@ -32,9 +33,24 @@ def srch_a_number(my_list):
         srch_a_number(my_list)
     
     if method_2 == 1:
-        pass
+        target = input(f'Please select the target number: ')
+        try:
+            target = int(target)
+        except:
+            print(f'Your target number {target} is not a valid option. Please try again')
+            srch_a_number(my_list)
+        match = False
+
+        for i in my_list:
+            if i == target:
+                match = True
+                break
+        
+        return match
+
     elif method_2 == 2:
         pass
+
     else:
         print('Please select a valid option: 1 or 2')
         srch_a_number(my_list)
@@ -60,7 +76,10 @@ def run():
         print(new_list)
     elif election == 2:
         new_list = order_a_list(my_list)
-        print(new_list)
+        if new_list == True:
+            print(f'Your target number is in the list.')
+        else:
+            print(f'Your target number is not in the list.')
     else:
         print('Please select a valid option: 1 or 2')
         exit()
