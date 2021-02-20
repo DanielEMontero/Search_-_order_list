@@ -22,7 +22,7 @@ def order_a_list(my_list):
         order_a_list(my_list)
 
 
-def srch_a_number(my_list):
+def srch_a_number(my_list,target,start,finish):
     print('\n\nThank you. \nNow, please select the method to search a number in the list. 1 or 2?: \n 1.Linear Search. \n 2.Binary Search.')
     method_2 = input(f'\n Your method:')
 
@@ -32,13 +32,7 @@ def srch_a_number(my_list):
         print('Your method is not a number. Please insert a number.')
         srch_a_number(my_list)
     
-    if method_2 == 1:
-        target = input(f'Please select the target number: ')
-        try:
-            target = int(target)
-        except:
-            print(f'Your target number {target} is not a valid option. Please try again')
-            srch_a_number(my_list)
+    if method_2 == 1:    
         match = False
 
         for i in my_list:
@@ -46,10 +40,20 @@ def srch_a_number(my_list):
                 match = True
                 break
         
-        return match, target
+        return match
 
     elif method_2 == 2:
-        pass
+        if start > finish:
+            return False
+        
+        middle = (start + finish) // 2
+
+        if my_list[middle] == target:
+            return True
+        elif my_list[middle] < target:
+            return srch_a_number[my_list, target, middle + 1, finish]
+        else:
+            return srch_a_number[my_list, target, middle - 1, finish]
 
     else:
         print('Please select a valid option: 1 or 2')
@@ -72,14 +76,19 @@ def run():
     print(f'Your list: \n {my_list}')
 
     if election == 1:
-        new_list = srch_a_number(my_list)
-        print(f'The target: {new_list[1]} {"is" if new_list[0] else "is not"} in the list.')
+        target = input(f'Please select the target number: ')
+        start = 0
+        finish = len(my_list)
+        try:
+            target = int(target)
+        except:
+            print(f'Your target number {target} is not a valid option. Please try again')
+
+        new_list = srch_a_number(my_list,target,start,finish)
+        print(f'The target: {target} {"is" if new_list else "is not"} in the list.')
+
     elif election == 2:
         new_list = order_a_list(my_list)
-        if new_list == True:
-            print(f'Your target number is in the list.')
-        else:
-            print(f'Your target number is not in the list.')
     else:
         print('Please select a valid option: 1 or 2')
         exit()
