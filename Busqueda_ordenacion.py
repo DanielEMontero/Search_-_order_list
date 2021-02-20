@@ -46,7 +46,7 @@ def srch_a_number(my_list):
                 match = True
                 break
         
-        return match
+        return match, target
 
     elif method_2 == 2:
         pass
@@ -73,7 +73,7 @@ def run():
 
     if election == 1:
         new_list = srch_a_number(my_list)
-        print(new_list)
+        print(f'The target: {new_list[1]} {"is" if new_list[0] else "is not"} in the list.')
     elif election == 2:
         new_list = order_a_list(my_list)
         if new_list == True:
