@@ -1,5 +1,6 @@
 import random
 
+
 def merge_sort(my_list):
     if len(my_list) > 1:
         middle = len(my_list) // 2
@@ -34,6 +35,7 @@ def merge_sort(my_list):
             k += 1
 
     return my_list
+
 
 def binary_search(my_list, target, start, finish):
     if start > finish:
@@ -117,6 +119,7 @@ def srch_a_number(my_list,target):
     elif method_2 == 2:
         start = 0
         finish = len(my_list)
+        my_list = merge_sort(my_list)
         return binary_search(my_list,target,start,finish)
 
     else:
@@ -158,11 +161,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-
-
-
-
-
-
-
-
