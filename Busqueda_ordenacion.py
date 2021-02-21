@@ -46,9 +46,9 @@ def binary_search(my_list, target, start, finish):
     if my_list[middle] == target:
         return True
     elif my_list[middle] < target:
-        return binary_search[my_list, target, middle + 1, finish]
+        return binary_search(my_list, target, middle + 1, finish)
     else:
-        return binary_search[my_list, target, start, middle - 1]
+        return binary_search(my_list, target, start, middle - 1)
 
 
 def order_a_list(my_list):
@@ -154,6 +154,8 @@ def run():
 
     elif election == 2:
         new_list = order_a_list(my_list)
+        print(my_list)
+
     else:
         print('Please select a valid option: 1 or 2')
         exit()
