@@ -2,38 +2,51 @@ import random
 
 def merge_sort(my_list):
     if len(my_list) > 1:
-            middle = len(my_list) // 2
-            left = my_list[:middle]
-            right = my_list[middle:]
-    
-            merge_sort(left)
-            merge_sort(right)
+        middle = len(my_list) // 2
+        left = my_list[:middle]
+        right = my_list[middle:]
 
-            i = 0
-            j = 0
-            k = 0
+        merge_sort(left)
+        merge_sort(right)
 
-            while i < len(left) and j < len(right):
-                if left[i] < right[j]:
-                    my_list[k] = left[i]
-                    i += 1
-                else:
-                    my_list[k] = right[j]
-                    j += 1
-                
-                k += 1
+        i = 0
+        j = 0
+        k = 0
 
-            while i < len(left):
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
                 my_list[k] = left[i]
                 i += 1
-                k += 1
-            
-            while j < len(right):
+            else:
                 my_list[k] = right[j]
                 j += 1
-                k += 1
+            
+            k += 1
+
+        while i < len(left):
+            my_list[k] = left[i]
+            i += 1
+            k += 1
+        
+        while j < len(right):
+            my_list[k] = right[j]
+            j += 1
+            k += 1
 
     return my_list
+
+def binary_search(my_list, target, start, finish):
+    if start > finish:
+        return False
+        
+    middle = (start + finish) // 2
+
+    if my_list[middle] == target:
+        return True
+    elif my_list[middle] < target:
+        return binary_search[my_list, target, middle + 1, finish]
+    else:
+        return binary_search[my_list, target, start, middle - 1]
 
 
 def order_a_list(my_list):
@@ -81,8 +94,8 @@ def order_a_list(my_list):
         order_a_list(my_list)
 
 
-def srch_a_number(my_list):
-    print('\n\nThank you. \nNow, please select the method to search a number in the list. 1 or 2?: \n 1.Line Search. \n 2.Binary Search.')
+def srch_a_number(my_list,target):
+    print('\n\nThank you. \nNow, please select the method to search a number in the list. 1 or 2?: \n 1.Linear Search. \n 2.Binary Search.')
     method_2 = input(f'\n Your method:')
 
     try:
@@ -91,10 +104,21 @@ def srch_a_number(my_list):
         print('Your method is not a number. Please insert a number.')
         srch_a_number(my_list)
     
-    if method_2 == 1:
-        pass
+    if method_2 == 1:    
+        match = False
+        
+        for i in my_list:
+            if i == target:
+                match = True
+                break
+        
+        return match
+
     elif method_2 == 2:
-        pass
+        start = 0
+        finish = len(my_list)
+        return binary_search(my_list,target,start,finish)
+
     else:
         print('Please select a valid option: 1 or 2')
         srch_a_number(my_list)
@@ -116,11 +140,17 @@ def run():
     print(f'Your list: \n {my_list}')
 
     if election == 1:
-        new_list = srch_a_number(my_list)
-        print(new_list)
+        target = input(f'Please select the target number: ')
+        try:
+            target = int(target)
+        except:
+            print(f'Your target number {target} is not a valid option. Please try again')
+
+        new_list = srch_a_number(my_list,target)
+        print(f'The target: {target} {"is" if new_list else "is not"} in the list.')
+
     elif election == 2:
         new_list = order_a_list(my_list)
-        print(new_list)
     else:
         print('Please select a valid option: 1 or 2')
         exit()
