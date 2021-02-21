@@ -1,6 +1,20 @@
 import random
 
 
+def binary_search(my_list, target, start, finish):
+    if start > finish:
+        return False
+        
+    middle = (start + finish) // 2
+
+    if my_list[middle] == target:
+        return True
+    elif my_list[middle] < target:
+        return binary_search[my_list, target, middle + 1, finish]
+    else:
+        return binary_search[my_list, target, start, middle - 1]
+
+
 def order_a_list(my_list):
     print('\n\nThank you. \nNow, please select the method to order your list. 1,2 or 3?: \n 1. Bubble Sort. \n 2. Insertion Sort. \n 3. Merge Sort.')
     method_1 = input(f'\n Your method:')
@@ -22,7 +36,7 @@ def order_a_list(my_list):
         order_a_list(my_list)
 
 
-def srch_a_number(my_list,target,start,finish):
+def srch_a_number(my_list,target):
     print('\n\nThank you. \nNow, please select the method to search a number in the list. 1 or 2?: \n 1.Linear Search. \n 2.Binary Search.')
     method_2 = input(f'\n Your method:')
 
@@ -34,7 +48,7 @@ def srch_a_number(my_list,target,start,finish):
     
     if method_2 == 1:    
         match = False
-
+        
         for i in my_list:
             if i == target:
                 match = True
@@ -43,17 +57,9 @@ def srch_a_number(my_list,target,start,finish):
         return match
 
     elif method_2 == 2:
-        if start > finish:
-            return False
-        
-        middle = (start + finish) // 2
-
-        if my_list[middle] == target:
-            return True
-        elif my_list[middle] < target:
-            return srch_a_number[my_list, target, middle + 1, finish]
-        else:
-            return srch_a_number[my_list, target, middle - 1, finish]
+        start = 0
+        finish = len(my_list)
+        return binary_search(my_list,target,start,finish)
 
     else:
         print('Please select a valid option: 1 or 2')
@@ -77,14 +83,12 @@ def run():
 
     if election == 1:
         target = input(f'Please select the target number: ')
-        start = 0
-        finish = len(my_list)
         try:
             target = int(target)
         except:
             print(f'Your target number {target} is not a valid option. Please try again')
 
-        new_list = srch_a_number(my_list,target,start,finish)
+        new_list = srch_a_number(my_list,target)
         print(f'The target: {target} {"is" if new_list else "is not"} in the list.')
 
     elif election == 2:
